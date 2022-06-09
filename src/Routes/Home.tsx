@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
-
-import { AppBar, Avatar, Menu, MenuItem, Toolbar, Typography, CssBaseline } from '@mui/material';
-import { makeStyles } from '@mui/styles'
+import {makeStyles} from '@mui/styles'
+import { AppBar, Menu, MenuItem, Toolbar, Typography, CssBaseline } from '@mui/material';
 export default function Home() {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -12,6 +11,8 @@ export default function Home() {
   const handleClose= ()=>{
     setAnchorEl(null);
   }
+
+  
 
   return (
     <div>

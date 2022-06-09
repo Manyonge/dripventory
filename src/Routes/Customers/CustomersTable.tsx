@@ -1,15 +1,30 @@
+
 import { Typography } from '@mui/material'
-import React, { useState } from 'react'
+import {useState} from 'react'
 import Axios from 'axios'
+import {
+  Table,
+  Header,
+  HeaderRow,
+  HeaderCell
+} from '@table-library/react-table-library'
+
+interface Data {
+  instagramHandle: string,
+  phoneNumber: string,
+  shoeSize: number,
+  hoodieSize: string
+}
+
 export default function CustomersTable() {
+
   const [customers, setCustomers] = useState('')
-  Axios.get('http://localhost:3005/customers')
-  .then((response)=>{
-    console.log(response.data)
-  })
+
+
   return (
-    <div>
-      <Typography variant= "h1">CustomersTable</Typography>
-    </div>
-  )
+      <Typography variant= "h4">
+        Customers Table
+      </Typography>
+
+    )
 }
