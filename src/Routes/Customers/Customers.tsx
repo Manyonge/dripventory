@@ -1,15 +1,16 @@
-import React from 'react'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
+import { Typography } from '@mui/material'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
+
 export default function Customers() {
+  const [customers, setCustomers] = useState('')
+
+
+
+  
   return (
     <div>
-        <Tabs>
-          <Tab label= "ALL CUSTOMERS" to= "table" component= {Link} />          
-          <Tab label= "NEW CUSTOMER" to= "create" component= {Link} />          
-        </Tabs>
       <Outlet />
     </div>
   )
