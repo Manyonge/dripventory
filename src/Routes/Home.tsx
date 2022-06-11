@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import {makeStyles} from '@mui/styles'
+import { Outlet } from 'react-router-dom'
+import Link from '@mui/material/Link' 
 import { AppBar, Menu, MenuItem, Toolbar, Typography, CssBaseline } from '@mui/material';
 export default function Home() {
 
@@ -19,20 +19,22 @@ export default function Home() {
       <AppBar position= "static">
         <CssBaseline /> 
         <Toolbar>
-          <Link to= "/">
-          <Typography align= "left" variant= "h5" component= "h1">
+          <Link href= "/">
+          <Typography variant= "h5" component= "h1">
             Dripventory
             </Typography>
             </Link>
+                <div>
           <Typography
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}>
+                  aria-controls= "menu-app"
+                  aria-haspopup= "true"
+                  onClick={handleMenu}
+                >
               CUSTOMERS
               </Typography>
-              <div >
+                <div>
                 <Menu
-                  id="menu-appbar"
+                    id= "menu-app"
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
@@ -46,13 +48,15 @@ export default function Home() {
                   open={Boolean(anchorEl)}
                   onClose= {handleClose}
                 >
-                  <Link to= "/customers/create" style={{textDecoration: "none"}} onClick={handleClose}>
+                    <Link
+                      href= "/customers/create"
+                      style={{textDecoration: "none"}}
+                      onClick={handleClose}
+                    >
                     <MenuItem>New Customer</MenuItem>
                     </Link>
-                    <Link to= "/customers/table" style={{textDecoration: "none"}} onClick={handleClose}>
-                      <MenuItem>All Customers</MenuItem>
-                    </Link>
                   </Menu>
+                </div>
                 </div>
         </Toolbar>
       </AppBar>
