@@ -4,66 +4,71 @@ import Link from '@mui/material/Link'
 import { AppBar, Menu, MenuItem, Toolbar, Typography, CssBaseline } from '@mui/material';
 export default function Home() {
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  }
-  const handleClose= ()=>{
-    setAnchorEl(null);
-  }
-
-  
+  const destinations= [
+    {
+      option: 'Customers',
+      href: '/customers'
+    },
+    {
+      option: 'Debits',
+      href: '/debits'
+    },
+     {
+      option: 'Stocks',
+      href: '/stocks'
+    },
+    {
+      option: 'Credits',
+      href: '/credits'
+    }]
 
   return (
     <div>
-      <AppBar position= "static">
-        <CssBaseline /> 
+      <CssBaseline/>
+      <AppBar position='static' color= "primary">
         <Toolbar>
-          <Link href= "/">
-          <Typography variant= "h5" component= "h1">
-            Dripventory
-            </Typography>
+          <Link
+            href= "/"
+            variant= "h3"
+            underline= 'none'
+            color= "secondary"
+            sx= {{
+              flexGrow: '2',
+              cursor: 'pointer'
+            }}
+            >
+          Dripventory
+          </Link>
+          <div 
+          style={{
+            display: "flex",
+            flexGrow: "1"
+          }}
+          >
+            {destinations.map((destination)=>{
+              return(
+                <Link
+                sx={{
+                  marginLeft: "1.7rem"
+                }}
+                underline= "hover"
+                color= "secondary"
+                variant= "h5"
+                href= {destination.href}
+                >
+                  {destination.option}
             </Link>
-                <div>
-          <Typography
-                  aria-controls= "menu-app"
-                  aria-haspopup= "true"
-                  onClick={handleMenu}
-                >
-              CUSTOMERS
-              </Typography>
-                <div>
-                <Menu
-                    id= "menu-app"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose= {handleClose}
-                >
-                    <Link
-                      href= "/customers/create"
-                      style={{textDecoration: "none"}}
-                      onClick={handleClose}
-                    >
-                    <MenuItem>New Customer</MenuItem>
-                    </Link>
-                  </Menu>
-                </div>
-                </div>
+              )
+            })}
+          </div>
+
         </Toolbar>
+
       </AppBar>
 
 
-      < Outlet />
 
+      < Outlet />
     </div>
   )
 }
