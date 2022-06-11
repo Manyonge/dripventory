@@ -48,6 +48,7 @@ export default function Home() {
             {destinations.map((destination)=>{
               return(
                 <Link
+                key= {destination.option}
                 sx={{
                   marginLeft: "1.7rem"
                 }}
@@ -61,14 +62,11 @@ export default function Home() {
               )
             })}
           </div>
-
         </Toolbar>
-
       </AppBar>
 
-
-
       < Outlet />
+
     </div>
   )
 }
