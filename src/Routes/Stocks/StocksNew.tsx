@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import React, { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -33,23 +33,32 @@ export default function CreditsNew() {
     <div>
 
       <form onSubmit= {handleSubmit(onSubmit)}>
+        <Box sx= {{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "80vh",
+          margin: "auto",
+          maxWidth: "50%",
+          border: "2px solid black",
+          borderRadius: "10px"
+        }}>
         <TextField
+          sx= {{
+            minWidth: "80%",
+            margin: "5px"
+          }}
           variant= "outlined"
           autoFocus
           size= "small"
-          sx={{
-            display: 'block'
-          }}
           placeholder= "Type of Transaction"
           {...register("type", {required: true})}
         />
-          {errors.type && <span>Transaction type is required</span>}
+          <span>{errors.type && <span>Transaction type is required</span>}</span>
         <TextField
           variant= "outlined"
           placeholder= "Name of Item"
-          sx={{
-            display: 'block'
-          }}
           size= "small"
           {...register("name", {required: true})}
           />
@@ -58,9 +67,6 @@ export default function CreditsNew() {
         variant= "outlined"
         type= "number"
         size= "small"
-        sx={{
-          display: 'block'
-        }}
         placeholder= "price"
         {...register("price", {required: true, valueAsNumber: true})}
         />
@@ -69,9 +75,6 @@ export default function CreditsNew() {
         variant= "outlined"
         type= "number"
         size= "small"
-        sx={{
-          display: 'block'
-        }}
         placeholder= "quantity"
         {...register("quantity", {required: true, valueAsNumber: true})}
         />
@@ -81,14 +84,12 @@ export default function CreditsNew() {
           type= "submit"
           color= "secondary"
           variant= "contained"
-          sx={{
-            display: 'inline-block'
-          }}
         >
           SUBMIT
         </Button>
         { submitted && <Navigate to= "/" replace= {true} />}
         { notSubmitted && <div> {notSubmitted} </div>}
+        </Box>
       </form>
     </div>
   )

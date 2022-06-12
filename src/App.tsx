@@ -32,7 +32,7 @@ const themeOptions = {
     secondary: {
       main: "#1C180C",
     },
-  },
+  }
 };
 
 const theme = createTheme(
