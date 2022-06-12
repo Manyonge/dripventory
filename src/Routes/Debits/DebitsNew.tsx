@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import React, { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -32,25 +32,38 @@ export default function CreditsNew() {
     <div>
 
       <form onSubmit= {handleSubmit(onSubmit)}>
+      <Box sx= {{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "80vh",
+          margin: "auto",
+          maxWidth: "50%",
+          border: "2px solid black",
+          borderRadius: "10px"
+        }}>
         <TextField
+
           variant= "outlined"
           autoFocus
           size= "small"
-          sx={{
-            display: 'block'
+          sx= {{
+            minWidth: "80%",
+            margin: "5px"
           }}
-          placeholder= "Type of Transaction"
+          label= "Type of Transaction"
           {...register("type", {required: true})}
         />
           {errors.type && <span>Transaction type is required</span>}
         <TextField
           variant= "outlined"
-          placeholder= "Amount"
+          label= "Amount"
           type= "number"
-          sx={{
-            display: 'block'
+          sx= {{
+            minWidth: "80%",
+            margin: "5px"
           }}
-          size= "small"
           {...register("amount", {required: true, valueAsNumber: true})}
           />
           {errors.amount && <span>Transaction Amount is required</span>}
@@ -58,10 +71,11 @@ export default function CreditsNew() {
         variant= "outlined"
         type= "date"
         size= "small"
-        sx={{
-          display: 'block'
+        sx= {{
+          minWidth: "80%",
+          margin: "5px"
         }}
-        placeholder= "date"
+        label= "date"
         {...register("date", {required: true, valueAsDate: true})}
         />
         {errors.date && <span>Transaction date is required</span>}
@@ -70,14 +84,12 @@ export default function CreditsNew() {
           type= "submit"
           color= "secondary"
           variant= "contained"
-          sx={{
-            display: 'inline-block'
-          }}
         >
           SUBMIT
         </Button>
         { submitted && <Navigate to= "/" replace= {true} />}
         { notSubmitted && <div> {notSubmitted} </div>}
+        </Box>
       </form>
     </div>
   )

@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
@@ -11,16 +11,21 @@ export default function Customers() {
   
   return (
     <div>
-      <div
-        style= {{
-          maxWidth: "80%"
-        }}
+      <Box sx= {{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        maxWidth: "100%",
+        margin: "5px"        
+      }}
       >
         <Button
           href= "/customers/table"
           size= "medium"
           sx={{
-            flexGrow: "1"
+            flexGrow: "1",
+            maxWidth: "30%",
+            marginRight: "20px"
           }}
           variant= "contained"
           disableRipple
@@ -31,14 +36,16 @@ export default function Customers() {
           href= "/customers/create"
           size= "medium"
           sx={{
-            flexGrow: "1"
+            flexGrow: "1",
+            maxWidth: "30%",
+            marginRight: "20px"
           }}
           variant= "contained"
           disableRipple
         >
           NEW CUSTOMER
         </Button>
-      </div>
+      </Box>
       <Outlet />
     </div>
   )

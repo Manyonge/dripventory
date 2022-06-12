@@ -52,30 +52,42 @@ export default function CreditsNew() {
           variant= "outlined"
           autoFocus
           size= "small"
-          placeholder= "Type of Transaction"
+          label= "Type of Transaction"
           {...register("type", {required: true})}
         />
           <span>{errors.type && <span>Transaction type is required</span>}</span>
         <TextField
+          sx= {{
+            minWidth: "80%",
+            margin: "5px"
+          }}
           variant= "outlined"
-          placeholder= "Name of Item"
+          label= "Name of Item"
           size= "small"
           {...register("name", {required: true})}
           />
           {errors.name && <span>Name of Item is required</span>}
         <TextField
+          sx= {{
+            minWidth: "80%",
+            margin: "5px"
+          }}
         variant= "outlined"
         type= "number"
         size= "small"
-        placeholder= "price"
+        label= "price"
         {...register("price", {required: true, valueAsNumber: true})}
         />
-        {errors.price && <span>Transaction date is required</span>}
+        {errors.price && <span>Transaction price is required</span>}
         <TextField
+          sx= {{
+            minWidth: "80%",
+            margin: "5px"
+          }} 
         variant= "outlined"
         type= "number"
         size= "small"
-        placeholder= "quantity"
+        label= "quantity"
         {...register("quantity", {required: true, valueAsNumber: true})}
         />
         {errors.quantity && <span>Item quantity is required</span>}
