@@ -22,7 +22,7 @@ import StocksTable from './Routes/Stocks/StocksTable';
 import StocksNew from './Routes/Stocks/StocksNew';
 import StocksDetails from './Routes/Stocks/StocksDetails';
 import StocksUpdate from './Routes/Stocks/StocksUpdate';
-
+import { QueryClient,QueryClientProvider } from 'react-query'
 
 const themeOptions = {
   palette: {
@@ -39,8 +39,11 @@ const theme = createTheme(
   themeOptions
   )
 
+  const queryClient = new QueryClient()
+
 function App() {
 return (
+    <QueryClientProvider client= {queryClient}>
       <ThemeProvider theme= {theme}>
         <BrowserRouter>
           <Routes>
@@ -73,6 +76,7 @@ return (
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

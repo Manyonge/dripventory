@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import Link from '@mui/material/Link' 
 import { AppBar, Menu, MenuItem, Toolbar, Typography, CssBaseline } from '@mui/material';
 export default function Home() {
@@ -61,6 +61,7 @@ export default function Home() {
             </Link>
               )
             })}
+
           </div>
         </Toolbar>
       </AppBar>
