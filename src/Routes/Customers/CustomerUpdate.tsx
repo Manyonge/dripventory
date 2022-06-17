@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function CustomerUpdate() {
-  return (
-    <div>CustomerUpdate</div>
-  )
+  return <div>CustomerUpdate</div>;
 }

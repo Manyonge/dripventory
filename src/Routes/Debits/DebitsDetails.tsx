@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function DebitsDetails() {
-  return (
-    <div>DebitsDetails</div>
-  )
+  return <div>DebitsDetails</div>;
 }

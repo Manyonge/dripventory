@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function StocksUpdate() {
-  return (
-    <div>StocksUpdate</div>
-  )
+  return <div>StocksUpdate</div>;
 }

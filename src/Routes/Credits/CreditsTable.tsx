@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function CreditsTable() {
-  return (
-    <div>CreditsTable</div>
-  )
+  return <div>CreditsTable</div>;
 }

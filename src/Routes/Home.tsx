@@ -1,73 +1,70 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
-import Link from '@mui/material/Link' 
-import { AppBar, Menu, MenuItem, Toolbar, Typography, CssBaseline } from '@mui/material';
-export default function Home() {
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Link from '@mui/material/Link';
+import { AppBar, Toolbar, CssBaseline } from '@mui/material';
 
-  const destinations= [
+export default function Home() {
+  const destinations = [
     {
       option: 'Customers',
-      href: '/customers'
+      href: '/customers',
     },
     {
       option: 'Debits',
-      href: '/debits'
+      href: '/debits',
     },
-     {
+    {
       option: 'Stocks',
-      href: '/stocks'
+      href: '/stocks',
     },
     {
       option: 'Credits',
-      href: '/credits'
-    }]
+      href: '/credits',
+    },
+  ];
 
   return (
     <div>
-      <CssBaseline/>
-      <AppBar position='static' color= "primary">
+      <CssBaseline />
+      <AppBar position="static" color="primary">
         <Toolbar>
           <Link
-            href= "/"
-            variant= "h3"
-            underline= 'none'
-            color= "secondary"
-            sx= {{
+            href="/"
+            variant="h3"
+            underline="none"
+            color="secondary"
+            sx={{
               flexGrow: '2',
-              cursor: 'pointer'
+              cursor: 'pointer',
             }}
-            >
-          Dripventory
-          </Link>
-          <div 
-          style={{
-            display: "flex",
-            flexGrow: "1"
-          }}
           >
-            {destinations.map((destination)=>{
-              return(
-                <Link
-                key= {destination.option}
+            Dripventory
+          </Link>
+          <div
+            style={{
+              display: 'flex',
+              flexGrow: '1',
+            }}
+          >
+            {destinations.map((destination) => (
+              <Link
+                key={destination.option}
                 sx={{
-                  marginLeft: "1.7rem"
+                  marginLeft: '1.7rem',
                 }}
-                underline= "hover"
-                color= "secondary"
-                variant= "h5"
-                href= {destination.href}
-                >
-                  {destination.option}
-            </Link>
-              )
-            })}
-
+                underline="hover"
+                color="secondary"
+                variant="h5"
+                href={destination.href}
+              >
+                {destination.option}
+              </Link>
+            ))}
           </div>
         </Toolbar>
       </AppBar>
 
-      < Outlet />
-
+      <Outlet />
     </div>
-  )
+  );
 }
