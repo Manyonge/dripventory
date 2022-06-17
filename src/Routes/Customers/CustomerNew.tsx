@@ -1,9 +1,8 @@
 import { Box, Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import Axios from 'axios';
+import Axios, { AxiosResponse } from 'axios';
+import { useMutation, useQueryClient } from 'react-query';
 
 type FormValues = {
   instagramHandle: string;
@@ -13,23 +12,28 @@ type FormValues = {
 };
 
 export default function CustomersNew() {
-  const [submitted, setSubmitted] = useState(false);
-  const [notSubmitted, setNotSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
   const url = 'http://localhost:3005/customers/create';
+  const queryClient = useQueryClient();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const response: any = await Axios.post(url, data);
-      if (response.status === 200) {
-        setSubmitted(true);
-      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response: AxiosResponse = await Axios.post(url, data);
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useMutation(onSubmit, {
+        onSuccess: () => {
+          queryClient.invalidateQueries('customers');
+        },
+      }).mutate(data);
+      return response.data;
     } catch (err: any) {
-      setNotSubmitted(err.message);
+      return 'there was an error';
+      throw err;
     }
   };
   return (
@@ -103,8 +107,6 @@ export default function CustomersNew() {
           >
             Submit
           </Button>
-          {submitted && <Navigate to="/" replace />}
-          {notSubmitted && <div>{notSubmitted}</div>}
         </Box>
       </form>
     </div>
