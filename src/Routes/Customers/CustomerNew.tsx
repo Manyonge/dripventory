@@ -1,8 +1,11 @@
 import { Box, Button, TextField } from '@mui/material';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SubmitHandler, useForm } from 'react-hook-form';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Axios, { AxiosResponse } from 'axios';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useMutation, useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   instagramHandle: string;
@@ -18,27 +21,29 @@ export default function CustomersNew() {
     formState: { errors },
   } = useForm<FormValues>();
   const url = 'http://localhost:3005/customers/create';
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response: AxiosResponse = await Axios.post(url, data);
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useMutation(onSubmit, {
-        onSuccess: () => {
-          queryClient.invalidateQueries('customers');
-        },
-      }).mutate(data);
-      return response.data;
-    } catch (err: any) {
-      return 'there was an error';
-      throw err;
-    }
-  };
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          const handler = async () => {
+            try {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const response: AxiosResponse = await Axios.post(url, data);
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              return response.data;
+            } catch (err: any) {
+              return 'there was an error';
+              throw err;
+            }
+          };
+          handler();
+          navigate('/customers/table');
+        })}
+      >
         <Box
           sx={{
             display: 'flex',

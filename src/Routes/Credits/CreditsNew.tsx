@@ -1,9 +1,9 @@
 import { Box, Button, TextField } from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import React, { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import Axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import Axios, { AxiosResponse } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   transactionType: string;
@@ -13,28 +13,31 @@ type FormValues = {
 
 export default function CreditsNew() {
   const url = 'http://localhost:3005/credits/create';
-  const [submitted, setSubmitted] = useState(false);
-  const [notSubmitted, setNotSubmitted] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      const response = await Axios.post(url, data);
-      if (response.status === 200) {
-        setSubmitted(true);
-      } else {
-        setNotSubmitted(true);
-      }
-    } catch (err) {
-      setNotSubmitted(true);
-    }
-  };
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          const handler = async () => {
+            try {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const response: AxiosResponse = await Axios.post(url, data);
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              return response.data;
+            } catch (err: any) {
+              return 'there was an error';
+              throw err;
+            }
+          };
+          handler();
+          navigate('/credits/table');
+        })}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -91,8 +94,6 @@ export default function CreditsNew() {
           >
             SUBMIT
           </Button>
-          {submitted && <Navigate to="/" replace />}
-          {notSubmitted && <div> {notSubmitted} </div>}
         </Box>
       </form>
     </div>

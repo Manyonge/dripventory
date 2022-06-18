@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div>
       <CssBaseline />
-      <AppBar position="static" color="primary">
+      <AppBar position="sticky" color="primary">
         <Toolbar>
           <Link
             href="/"
